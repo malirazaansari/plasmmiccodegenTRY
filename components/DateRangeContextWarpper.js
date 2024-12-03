@@ -1,10 +1,13 @@
 import React from "react";
-import { DatePickerWithRange } from "@/components/DatePickerWithRange";
 import { usePlasmicComponentData } from "@plasmicapp/loader-react";
+import { DatePickerWithRange } from "./DateRangePicker";
 
 const DatePickerWithRangePlasmicWrapper = (props) => {
   const { minDate, maxDate, onDateRangeSelect, className } =
     usePlasmicComponentData(props);
+
+  const effectiveMinDate = minDate || new Date();
+  const effectiveMaxDate = maxDate || addDays(new Date(), 365);
 
   return (
     <DatePickerWithRange
